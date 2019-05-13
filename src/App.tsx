@@ -1,8 +1,19 @@
-import React from 'react';
+import React, { useReducer, useEffect } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import reducer from './store';
+import { init } from './socket';
+
+const initialState = {
+  cards: []
+};
+
 
 const App: React.FC = () => {
+  const [state, dispatch] = useReducer(reducer, initialState);
+
+  useEffect(() => init(dispatch));
+
   return (
     <div className="App">
       <header className="App-header">
